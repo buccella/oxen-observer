@@ -5,12 +5,19 @@ awesome, safe.
 
 ## Prerequisite packages 
 
-sudo apt install build-essential pkg-config libsodium-dev libzmq3-dev python3-dev python3-flask python3-babel python3-pygments
+`sudo apt install build-essential pkg-config cmake libsodium-dev libzmq3-dev python3-dev python3-flask python3-babel python3-pygments`
+
+Note that we require a very recent python3-jinja2 package (2.11+), which may not be installed by the above. If not supplied
+by your Linux distro, you can overwrite a newer version via pip:
+
+`sudo pip3 install -I jinja2`
+
 
 ## Building and running
 
 Quick and dirty setup instructions for now:
 
+```
     git submodule update --init --recursive
     cd pylokimq
     mkdir build
@@ -19,9 +26,7 @@ Quick and dirty setup instructions for now:
     make -j6
     cd ../..
     ln -s pylokimq/build/pylokimq/pylokimq.cpython-*.so .
-    
-(Note that we require a very recent python3-jinja package (2.11+), which may not be installed by the
-above.)
+```
 
 You'll also need to run oxend with `--lmq-local-control ipc:///path/to/loki-observer/mainnet.sock`.
 
